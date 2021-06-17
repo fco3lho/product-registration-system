@@ -276,7 +276,7 @@ background-color: rgb(75, 75, 75);
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>320</x>
       <y>470</y>
       <width>141</width>
       <height>51</height>
@@ -295,7 +295,32 @@ background-color: rgb(75, 75, 75);
 background-color: rgb(75, 75, 75);</string>
     </property>
     <property name="text">
-     <string>OK</string>
+     <string>Cadastrar</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>470</y>
+      <width>141</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(75, 75, 75);</string>
+    </property>
+    <property name="text">
+     <string>Lista de produtos</string>
     </property>
    </widget>
   </widget>

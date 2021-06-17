@@ -34,11 +34,22 @@ def mainFunction():
     cursor.execute(command_sql, data)
     banco.commit()
 
+    #Cleaning fields
+    form.lineEdit.setText("")
+    form.lineEdit_2.setText("")
+    form.lineEdit_3.setText("")
+    
     print("")
+
+#Function to show product list screen
+def call_show_products():
+    show_products.show()
 
 app = QtWidgets.QApplication([])
 form = uic.loadUi("form window.ui")
+show_products = uic.loadUi("show products.ui")
 form.pushButton.clicked.connect(mainFunction)
+form.pushButton_2.clicked.connect(call_show_products)
 
 form.show()
 app.exec()
