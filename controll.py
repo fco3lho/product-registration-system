@@ -1,6 +1,7 @@
 from PyQt5 import uic, QtWidgets
 import mysql.connector
 
+#Connecting database
 banco = mysql.connector.connect(
     host = "localhost",
     user = "root",
@@ -44,6 +45,20 @@ def mainFunction():
 #Function to show product list screen
 def call_show_products():
     show_products.show()
+    cursor = banco.cursor()
+    command_sql = "SELECT * FROM produtos"
+    cursor.execute(command_sql)
+    data_read = cursor.fetchall()
+
+    #Create the table in window "show products.ui"
+    show_products.tableWidget.setRowCount(len(data_read))
+    show_products.tableWidget.setColumnCount(5)
+
+    #Implementing database elements
+    for i in range(0, len(data_read)):
+        for j in range(0, 5):
+            show_products.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(data_read[i][j])))
+
 
 app = QtWidgets.QApplication([])
 form = uic.loadUi("form window.ui")
