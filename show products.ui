@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>542</width>
-    <height>615</height>
+    <height>664</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -187,6 +187,34 @@
       </brush>
      </property>
     </column>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>590</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(75, 75, 75);</string>
+    </property>
+    <property name="text">
+     <string>PDF</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

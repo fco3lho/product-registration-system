@@ -1,5 +1,6 @@
 from PyQt5 import uic, QtWidgets
 import mysql.connector
+from reportlab.pdfgen import canvas
 
 #Connecting database
 banco = mysql.connector.connect(
@@ -59,12 +60,42 @@ def call_show_products():
         for j in range(0, 5):
             show_products.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(data_read[i][j])))
 
+#Function to create PDF of products
+def create_pdf():
+    cursor = banco.cursor()
+    command_sql = "SELECT * FROM produtos"
+    cursor.execute(command_sql)
+    data_read = cursor.fetchall()
+    y = 0
+
+    pdf = canvas.Canvas("Cadastro de produtos.pdf")
+    pdf.setFont("Times-Bold", 20)
+    pdf.drawString(200, 800, "Produtos cadastrados:")
+    pdf.setFont("Times-Bold", 12)
+
+    pdf.drawString(10, 750, "ID")
+    pdf.drawString(110, 750, "CODIGO")
+    pdf.drawString(210, 750, "PRODUTO")
+    pdf.drawString(310, 750, "PREÇO")
+    pdf.drawString(410, 750, "CATEGORIA")
+
+    for i in range(0, len(data_read)):
+        y += 50
+        pdf.drawString(10, 750 - y, str(data_read[i][0]))
+        pdf.drawString(110, 750 - y, str(data_read[i][1]))
+        pdf.drawString(210, 750 - y, str(data_read[i][2]))
+        pdf.drawString(310, 750 - y, str(data_read[i][3]))
+        pdf.drawString(410, 750 - y, str(data_read[i][4]))
+
+    pdf.save()
+    print("PDF saved successfully.")
 
 app = QtWidgets.QApplication([])
 form = uic.loadUi("form window.ui")
 show_products = uic.loadUi("show products.ui")
 form.pushButton.clicked.connect(mainFunction)
 form.pushButton_2.clicked.connect(call_show_products)
+show_products.pushButton.clicked.connect(create_pdf)
 
 form.show()
 app.exec()
