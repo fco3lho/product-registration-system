@@ -10,6 +10,7 @@ banco = mysql.connector.connect(
     database = "product_registration"
 )
 
+#Main function
 def mainFunction():
     codigo = form.lineEdit.text()
     descricao = form.lineEdit_2.text()
@@ -90,12 +91,29 @@ def create_pdf():
     pdf.save()
     print("PDF saved successfully.")
 
+#Deleting data
+def delete_data():
+    
+    #Deleting in window "show_products.ui"
+    line = show_products.tableWidget.currentRow()
+    show_products.tableWidget.removeRow(line)
+
+    #Deleting in database "produtos"
+    cursor = banco.cursor()
+    cursor.execute("SELECT id FROM produtos")
+    data_read = cursor.fetchall()
+    value_id = data_read[line][0]
+    cursor.execute("DELETE FROM produtos WHERE id=" + str(value_id))
+
+#Connecting buttons and windows with functions
 app = QtWidgets.QApplication([])
 form = uic.loadUi("form window.ui")
 show_products = uic.loadUi("show products.ui")
 form.pushButton.clicked.connect(mainFunction)
 form.pushButton_2.clicked.connect(call_show_products)
 show_products.pushButton.clicked.connect(create_pdf)
+show_products.pushButton_2.clicked.connect(delete_data)
 
+#Show windows
 form.show()
 app.exec()
