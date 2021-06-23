@@ -1,4 +1,4 @@
-# Sistema de registro de produtos (Em progresso)
+# Sistema de registro de produtos
 <b>Este programa tem como objetivo simular um registro real de produtos de varejo em um banco de dados utilizando Python 3.9.5, MySQL 5.7.14, QtDesigner e WAMPServer 3.0.6.</b>
 
 ## Importação de bibliotecas Python
