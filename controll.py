@@ -10,6 +10,8 @@ banco = mysql.connector.connect(
     database = "product_registration"
 )
 
+number_id = None #Serves to exchange information in different functions / Global variable.
+
 #Main function
 def mainFunction():
     codigo = form.lineEdit.text()
@@ -105,14 +107,58 @@ def delete_data():
     value_id = data_read[line][0]
     cursor.execute("DELETE FROM produtos WHERE id=" + str(value_id))
 
+#Editing data
+def data_edit():
+    global number_id
+
+    line = show_products.tableWidget.currentRow()
+    cursor = banco.cursor()
+    cursor.execute("SELECT id FROM produtos")
+    data_read = cursor.fetchall()
+    value_id = data_read[line][0]
+    cursor.execute("SELECT * FROM produtos WHERE id=" + str(value_id))
+    product = cursor.fetchall()
+
+    number_id = value_id
+
+    data_editor.show()
+    data_editor.lineEdit.setText(str(product[0][0]))
+    data_editor.lineEdit_2.setText(str(product[0][1]))
+    data_editor.lineEdit_3.setText(str(product[0][2]))
+    data_editor.lineEdit_4.setText(str(product[0][3]))
+    data_editor.lineEdit_5.setText(str(product[0][4]))
+
+#Saving edited data
+def data_save():
+    global number_id
+
+    #Values ​​entered in lineEdit.
+    codigo = data_editor.lineEdit_2.text()
+    descricao = data_editor.lineEdit_3.text()
+    preco = data_editor.lineEdit_4.text()
+    categoria = data_editor.lineEdit_5.text()
+
+    #Updating data in database
+    cursor = banco.cursor()
+    cursor.execute("UPDATE produtos SET codigo = '{}', descricao = '{}', preco = '{}', categoria = '{}' WHERE id = {}".format(codigo, descricao, preco, categoria, number_id))
+
+    #Updating data in windows
+    show_products.close()
+    data_editor.close()
+    call_show_products()
+
 #Connecting buttons and windows with functions
 app = QtWidgets.QApplication([])
 form = uic.loadUi("form window.ui")
 show_products = uic.loadUi("show products.ui")
+data_editor = uic.loadUi("data edit.ui")
+
 form.pushButton.clicked.connect(mainFunction)
 form.pushButton_2.clicked.connect(call_show_products)
 show_products.pushButton.clicked.connect(create_pdf)
 show_products.pushButton_2.clicked.connect(delete_data)
+show_products.pushButton_3.clicked.connect(data_edit)
+data_editor.pushButton_3.clicked.connect(data_save)
 
 #Show windows
 form.show()
