@@ -10,7 +10,7 @@ Para Windows, abra o Prompt de Comando e insira os seguintes comandos:
 ```
 
 ## Criação interface QtDesigner
-Crie sua interface à seu gosto desde que a mesma tenha todos os botões e campos necessários para inserir os dados dos produtos a serem registrados e salve o código da interface no mesmo diretório que o código Python que dará vida a interface.
+Crie suas interfaces à seu gosto desde que as mesmas tenham todos os botões e campos necessários para inserir os dados dos produtos a serem registrados, excluídos ou editados, e salve oo códigos das interfaces no mesmo diretório que o código Python que dará vida as interfaces.
 
 ## Criação de um banco de dados
 <b>1</b> - Após a instalação do WAMPServer 3.0.6, execute o WAMPServer e aguarde todos os serviços estarem executando.</br>
