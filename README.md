@@ -36,3 +36,6 @@ CREATE TABLE produtos (
 );
 ```
 <b>Feito todos esses processos, você terá criado um banco de dados e uma tabela dentro do banco de dados, que será utilizada para salvar os produtos inseridos na interface do programa.</b>
+
+## Uso de um ambiente virtual (venv)
+<b>Foi upado um ambiente virtual do programa, para caso ocorra a clonagem do repositório ou download dos códigos para uso, não haja conflito de versões em diferentes sistemas</b>
